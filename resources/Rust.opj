@@ -2411,7 +2411,7 @@
             "ArgumentBehavior": 4,
             "ArgumentString": "l1.Address",
             "HookTypeName": "Simple",
-            "Name": "OnRconConnection [exp]",
+            "Name": "OnRconConnection [web]",
             "HookName": "OnRconConnection",
             "AssemblyName": "Assembly-CSharp.dll",
             "TypeName": "Facepunch.RCon/RConListener",
@@ -2430,7 +2430,7 @@
         {
           "Type": "Modify",
           "Hook": {
-            "InjectionIndex": 22,
+            "InjectionIndex": 21,
             "RemoveCount": 0,
             "Instructions": [
               {
@@ -2445,8 +2445,8 @@
               }
             ],
             "HookTypeName": "Modify",
-            "Name": "OnRconConnection [exp, patch]",
-            "HookName": "OnRconConnection [exp, patch]",
+            "Name": "CloseRconSocket [patch]",
+            "HookName": "CloseRconSocket [patch]",
             "AssemblyName": "Assembly-CSharp.dll",
             "TypeName": "Facepunch.RCon/RConListener",
             "Flagged": false,
@@ -2457,7 +2457,7 @@
               "Parameters": []
             },
             "MSILHash": "vA8E2P9CGuEzsU2phJqz972OpKsnHsdVFyeexFubjTk=",
-            "BaseHookName": "OnRconConnection [exp]",
+            "BaseHookName": "OnRconConnection [web]",
             "HookCategory": "_Patches"
           }
         },
@@ -9730,217 +9730,27 @@
           }
         },
         {
-          "Type": "Modify",
+          "Type": "Simple",
           "Hook": {
-            "InjectionIndex": 40,
-            "RemoveCount": 0,
-            "Instructions": [
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Assembly-CSharp|BaseNetworkable|get_limitNetworking"
-              },
-              {
-                "OpCode": "brtrue_s",
-                "OpType": "Instruction",
-                "Operand": 1032
-              },
-              {
-                "OpCode": "ldstr",
-                "OpType": "String",
-                "Operand": "OnSendModelState"
-              },
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Oxide.Core|Oxide.Core.Interface|CallHook(System.String,System.Object)"
-              },
-              {
-                "OpCode": "ldnull",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "beq_s",
-                "OpType": "Instruction",
-                "Operand": 40
-              },
-              {
-                "OpCode": "ret",
-                "OpType": "None",
-                "Operand": null
-              }
-            ],
-            "HookTypeName": "Modify",
-            "Name": "OnSendModelState",
-            "HookName": "OnSendModelState",
+            "InjectionIndex": 4,
+            "ReturnBehavior": 1,
+            "ArgumentBehavior": 1,
+            "ArgumentString": null,
+            "HookTypeName": "Simple",
+            "Name": "OnHelicopterRetire",
+            "HookName": "OnHelicopterRetire",
             "AssemblyName": "Assembly-CSharp.dll",
-            "TypeName": "BasePlayer",
+            "TypeName": "PatrolHelicopterAI",
             "Flagged": false,
             "Signature": {
-              "Exposure": 0,
-              "Name": "SendModelState",
+              "Exposure": 2,
+              "Name": "Retire",
               "ReturnType": "System.Void",
               "Parameters": []
             },
-            "MSILHash": "Z7r7G4wMiv6MOO/ulBEBYoFONSyylxuQhJjBWb2emOI=",
+            "MSILHash": "527YYRqPEFnEmPDzs0BNHzkjX3jT3lFluQEiL6SgQUE=",
             "BaseHookName": null,
-            "HookCategory": "Player"
-          }
-        },
-        {
-          "Type": "Modify",
-          "Hook": {
-            "InjectionIndex": 9,
-            "RemoveCount": 0,
-            "Instructions": [
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Assembly-CSharp|BaseNetworkable|get_limitNetworking"
-              },
-              {
-                "OpCode": "brtrue_s",
-                "OpType": "Instruction",
-                "Operand": 8
-              },
-              {
-                "OpCode": "ldstr",
-                "OpType": "String",
-                "Operand": "OnSignalBroadcast"
-              },
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Oxide.Core|Oxide.Core.Interface|CallHook(System.String,System.Object)"
-              },
-              {
-                "OpCode": "ldnull",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "beq_s",
-                "OpType": "Instruction",
-                "Operand": 9
-              },
-              {
-                "OpCode": "ret",
-                "OpType": "None",
-                "Operand": null
-              }
-            ],
-            "HookTypeName": "Modify",
-            "Name": "OnSignalBroadcast",
-            "HookName": "OnSignalBroadcast",
-            "AssemblyName": "Assembly-CSharp.dll",
-            "TypeName": "BaseEntity",
-            "Flagged": false,
-            "Signature": {
-              "Exposure": 2,
-              "Name": "SignalBroadcast",
-              "ReturnType": "System.Void",
-              "Parameters": [
-                "BaseEntity/Signal",
-                "Network.Connection"
-              ]
-            },
-            "MSILHash": "I9xD78y07q+ys+tq+0dePXYG+5KtnpmAW6fFOo6Fgps=",
-            "BaseHookName": null,
-            "HookCategory": "Entity"
-          }
-        },
-        {
-          "Type": "Modify",
-          "Hook": {
-            "InjectionIndex": 9,
-            "RemoveCount": 0,
-            "Instructions": [
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Assembly-CSharp|BaseNetworkable|get_limitNetworking"
-              },
-              {
-                "OpCode": "brtrue_s",
-                "OpType": "Instruction",
-                "Operand": 8
-              },
-              {
-                "OpCode": "ldstr",
-                "OpType": "String",
-                "Operand": "OnSignalBroadcast"
-              },
-              {
-                "OpCode": "ldarg_0",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "call",
-                "OpType": "Method",
-                "Operand": "Oxide.Core|Oxide.Core.Interface|CallHook(System.String,System.Object)"
-              },
-              {
-                "OpCode": "ldnull",
-                "OpType": "None",
-                "Operand": null
-              },
-              {
-                "OpCode": "beq_s",
-                "OpType": "Instruction",
-                "Operand": 9
-              },
-              {
-                "OpCode": "ret",
-                "OpType": "None",
-                "Operand": null
-              }
-            ],
-            "HookTypeName": "Modify",
-            "Name": "OnSignalBroadcast",
-            "HookName": "OnSignalBroadcast",
-            "AssemblyName": "Assembly-CSharp.dll",
-            "TypeName": "BaseEntity",
-            "Flagged": false,
-            "Signature": {
-              "Exposure": 2,
-              "Name": "SignalBroadcast",
-              "ReturnType": "System.Void",
-              "Parameters": [
-                "BaseEntity/Signal",
-                "System.String",
-                "Network.Connection"
-              ]
-            },
-            "MSILHash": "8wjUp+HitBXmFrgNsJq/4WThb31NtqKNXUAMS+2tsok=",
-            "BaseHookName": null,
-            "HookCategory": "Player"
+            "HookCategory": null
           }
         }
       ],
@@ -13942,9 +13752,9 @@
           "MSILHash": ""
         },
         {
-          "Name": "BasePlayer::nextModelStateUpdate",
+          "Name": "HelicopterDebris::tooHotUntil",
           "AssemblyName": "Assembly-CSharp.dll",
-          "TypeName": "BasePlayer",
+          "TypeName": "HelicopterDebris",
           "Type": 0,
           "TargetExposure": [
             2
@@ -13954,8 +13764,8 @@
             "Exposure": [
               0
             ],
-            "Name": "nextModelStateUpdate",
-            "FullTypeName": "System.Single BasePlayer::nextModelStateUpdate",
+            "Name": "tooHotUntil",
+            "FullTypeName": "System.Single HelicopterDebris::tooHotUntil",
             "Parameters": []
           },
           "MSILHash": ""
@@ -14146,7 +13956,7 @@
             "ArgumentBehavior": 4,
             "ArgumentString": "a0.ConnectionInfo.ClientIpAddress",
             "HookTypeName": "Simple",
-            "Name": "OnRconConnection [web]",
+            "Name": "OnRconConnection [exp]",
             "HookName": "OnRconConnection",
             "AssemblyName": "Facepunch.Rcon.dll",
             "TypeName": "Facepunch.Rcon.Listener/<>c__DisplayClass10_0",
@@ -14191,8 +14001,8 @@
               ]
             },
             "MSILHash": "i++MPf2ru1exUxviGOF97GXZ69JJrVsLgUEgD6ayOKY=",
-            "BaseHookName": "OnRconConnection [web]",
-            "HookCategory": "_Patches"
+            "BaseHookName": "OnRconConnection [exp]",
+            "HookCategory": "Server"
           }
         },
         {
